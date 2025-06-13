@@ -1,45 +1,43 @@
 package studentdetails1;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class CourseDetails {
-    static String[] courseTitles = new String[100];
-    static String[] instructorNames = new String[100];
-    static String[] durations = new String[100];
-    static int courseCount = 0;
+    // Dynamic lists to store course information
+    static ArrayList<String> courseTitles = new ArrayList<>();
+    static ArrayList<String> instructorNames = new ArrayList<>();
+    static ArrayList<String> durations = new ArrayList<>();
 
-    // Method to add course details
+    // Method to add a course
     public static void addCourseDetails(Scanner input) {
-        if (courseCount >= 100) {
-            System.out.println("Course limit reached!");
-            return;
-        }
-
         System.out.print("Enter Course Title: ");
-        courseTitles[courseCount] = input.nextLine();
+        String title = input.nextLine();
+        courseTitles.add(title);
 
         System.out.print("Enter Instructor Name: ");
-        instructorNames[courseCount] = input.nextLine();
+        String instructor = input.nextLine();
+        instructorNames.add(instructor);
 
         System.out.print("Enter Duration (e.g., 3 months): ");
-        durations[courseCount] = input.nextLine();
+        String duration = input.nextLine();
+        durations.add(duration);
 
-        courseCount++;
         System.out.println("Course added successfully!");
     }
 
-    // Method to view all course details
+    // Method to display all courses
     public static void viewAllCourses() {
-        if (courseCount == 0) {
+        if (courseTitles.isEmpty()) {
             System.out.println("No courses to display.");
             return;
         }
 
         System.out.println("\n--- Course List ---");
-        for (int i = 0; i < courseCount; i++) {
-            System.out.println("Course Title: " + courseTitles[i] +
-                    ", Instructor: " + instructorNames[i] +
-                    ", Duration: " + durations[i]);
+        for (int i = 0; i < courseTitles.size(); i++) {
+            System.out.println("Course Title: " + courseTitles.get(i) +
+                    ", Instructor: " + instructorNames.get(i) +
+                    ", Duration: " + durations.get(i));
         }
     }
 }
